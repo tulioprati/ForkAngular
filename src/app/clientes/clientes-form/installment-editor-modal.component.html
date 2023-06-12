@@ -1,0 +1,82 @@
+<div class="modal-header title" style="background-color: #e7e7e7; max-height: 50px">
+  <h5 class="modal-title">Movimentação</h5>
+  <span (click)="cancel()" style="cursor: pointer">X</span>
+</div>
+<div class="container content-modal" *ngIf="!success">
+  <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success == true">
+          Cliente salvo/atualizado com sucesso
+        </div>
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+          {{erro}}
+        </div>
+      </div>
+    </div>
+    <div class="input-group mb-3 col-md-6" *ngIf="cliente.id">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Id</span>
+      </div>
+      <input type="text" class="form-control" [(ngModel)]="cliente.id" name="valor" [ngModelOptions]="{standalone: true}" disabled>
+    </div>
+
+
+
+    <div class="row content-modal">
+      <div class="input-group mb-3 col-md-12">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="cliente.tipo" name="tipo">
+          <option value="Entrada">Entrada</option>
+          <option value="Saída">Saída</option>
+          <option value="Poupança">Poupança</option>
+        </select>
+      </div>
+
+<!--      <mat-form-field>-->
+<!--        <mat-label>Choose a date</mat-label>-->
+<!--        <input matInput [matDatepicker]="picker">-->
+<!--        <mat-hint>MM/DD/YYYY</mat-hint>-->
+<!--        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--        <mat-datepicker #picker></mat-datepicker>-->
+<!--      </mat-form-field>-->
+
+      <div class="input-group mb-3 col-md-6">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Data</span>
+        </div>
+        <input type="text" class="form-control" [(ngModel)]="cliente.data" name="data" [ngModelOptions]="{standalone: true}">
+      </div>
+
+      <div class="input-group mb-3 col-md-6">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Valor</span>
+        </div>
+        <input type="text" class="form-control" [(ngModel)]="cliente.valor" name="valor" [ngModelOptions]="{standalone: true}">
+      </div>
+
+      <div class="input-group mb-3 col-md-12">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Descrição</span>
+        </div>
+        <textarea class="form-control" [(ngModel)]="cliente.descricao" [ngModelOptions]="{standalone: true}"></textarea>
+      </div>
+
+
+    </div>
+    <div class="row right">
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary" style="margin-left: 23px" *ngIf="!cliente?.id">Salvar</button>
+        <button type="submit" class="btn btn-success" style="margin-left: 23px" *ngIf="cliente?.id">Salvar</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+<div *ngIf="success" class="alert alert-success" role="alert">
+  A movimentação foi salva com sucesso!
+</div>
+

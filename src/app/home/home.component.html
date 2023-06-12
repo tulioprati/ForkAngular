@@ -1,0 +1,36 @@
+<div class="row filter">
+  <div class="input-group mb-3 col-md-6">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Data inicial</span>
+    </div>
+    <input type="text" class="form-control" [(ngModel)]="initialDate" name="initialDate"
+           [ngModelOptions]="{standalone: true}">
+  </div>
+  <div class="input-group mb-3 col-md-6">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Data final</span>
+    </div>
+    <input type="text" class="form-control" [(ngModel)]="finalDate" name="finalDate"
+           [ngModelOptions]="{standalone: true}">
+  </div>
+</div>
+<div class="row card-content">
+  <div class="card text-white bg-secondary mb-3 cards" style="max-width: 18rem;">
+    <div class="card-header">Poupança</div>
+    <div class="card-body">
+      <h5 class="card-title">{{ saving }}</h5>
+    </div>
+  </div>
+  <div class="card text-white bg-success mb-3 cards" style="max-width: 18rem;">
+    <div class="card-header">Entrada</div>
+    <div class="card-body">
+      <h5 class="card-title">{{ earning }}</h5>
+    </div>
+  </div>
+  <div class="card text-white bg-danger mb-3 cards" style="max-width: 18rem;">
+    <div class="card-header">Saída</div>
+    <div class="card-body">
+      <h5 class="card-title">{{ out }}</h5>
+    </div>
+  </div>
+</div>
