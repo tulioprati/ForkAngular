@@ -1,5 +1,3 @@
-import {ClientesService} from './clientes.service';
-import {ClientesModule} from './clientes/clientes.module';
 import {TemplateModule} from './template/template.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
@@ -15,6 +13,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
+import {PeoplesService} from './services/people.service';
+import {PeopleRoutingModule} from './entities/people/people-routing.module';
+import {PeopleModule} from './entities/people/people.module';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     HttpClientModule,
     AppRoutingModule,
     TemplateModule,
-    ClientesModule,
+    PeopleModule,
     NgbModule,
     NgxMaskModule.forRoot(),
     FormsModule,
@@ -38,7 +39,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatNativeDateModule
   ],
   providers: [
-    ClientesService
+    PeoplesService
   ],
   bootstrap: [AppComponent]
 })

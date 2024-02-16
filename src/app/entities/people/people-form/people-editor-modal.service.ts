@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {InstallmentEditorModalComponent} from './installment-editor-modal.component';
-import {Cliente} from '../clientes';
+import {PeopleEditorModalComponent} from './people-editor-modal.component';
+import {People} from '../../../models/people';
+
 
 @Injectable({providedIn: 'root'})
-export class InstallmentEditorModalService {
+export class PeopleEditorModalService {
   private isOpen = false;
   private instance?: NgbModalRef;
 
@@ -12,7 +13,7 @@ export class InstallmentEditorModalService {
   }
 
   show(
-    cliente?: Cliente
+    people?: People
   ): void {
     if (this.isOpen) {
       return;
@@ -20,11 +21,11 @@ export class InstallmentEditorModalService {
 
     this.isOpen = true;
 
-    this.instance = this.modalService.open(InstallmentEditorModalComponent, {
+    this.instance = this.modalService.open(PeopleEditorModalComponent, {
       size: 'lg',
       backdrop: 'static'
     });
-    this.instance.componentInstance.cliente = cliente;
+    this.instance.componentInstance.people = people;
     this.instance.componentInstance.confirm = confirm;
 
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Moment} from 'moment';
-import {ClientesService} from '../clientes.service';
-import {Cliente} from '../clientes/clientes';
+import {People} from '../models/people';
+import {PeoplesService} from '../services/people.service';
 
 @Component({
   selector: 'app-home',
@@ -14,30 +14,20 @@ export class HomeComponent implements OnInit {
   earning: number = 0;
   out: number = 0;
   saving: number = 0;
-  clientes: Cliente[];
+  peoples: People[];
 
-  constructor(private service: ClientesService) {
+  constructor(private service: PeoplesService) {
   }
 
   ngOnInit(): void {
-    this.service.getClientes().subscribe(resposta => {
-      this.clientes = resposta;
+    this.service.getPeoples().subscribe(resposta => {
+      this.peoples = resposta;
       this.filterValueClientByType();
     });
 
   }
 
   filterValueClientByType() {
-    for (var i = 0; i < this.clientes.length; i++) {
-      var conta = this.clientes[i];
 
-      if (conta.tipo === 'Entrada') {
-        this.earning += conta.valor;
-      } else if (conta.tipo === 'Saída') {
-        this.out += conta.valor;
-      }else{
-        this.saving += conta.valor;
-      }
-    }
   }
 }

@@ -1,47 +1,40 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
-import {ActivatedRoute, Params, Router} from '@angular/router';
-import {Cliente} from '../clientes';
-import {ClientesService} from '../../clientes.service';
-
-import * as moment from 'moment';
-import {InstallmentApprovalModalService} from './installment-approval-modal.service';
-
+import {ActivatedRoute, Router} from '@angular/router';
+import {PeopleEditorModalService} from './people-editor-modal.service';
+import {People} from '../../../models/people';
+import {PeoplesService} from '../../../services/people.service';
 
 @Component({
   selector: 'app-installment-editor-modal',
-  templateUrl: './installment-approval-modal.component.html',
-  styleUrls: ['./installment-approval-modal.component.css']
+  templateUrl: './people-editor-modal.component.html',
+  styleUrls: ['./people-editor-modal.component.css']
 })
-export class InstallmentApprovalModalComponent implements OnInit {
+export class PeopleEditorModalComponent implements OnInit {
   success: boolean = false;
   errors: string[];
   id: number;
 
   @Input()
-  cliente: Cliente;
+  people: People;
 
   constructor(
-    private service: ClientesService,
+    private service: PeoplesService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private installmentEditorModalService: InstallmentApprovalModalService
+    private installmentEditorModalService: PeopleEditorModalService
   ) {
-    this.cliente = new Cliente();
+    this.people = new People();
   }
 
   ngOnInit(): void {
-    if(!this.cliente) {
-      this.cliente = new Cliente();
+    if(!this.people) {
+      this.people = new People();
     }
   }
 
   onSubmit() {
-    this.cliente.data = moment(this.cliente.data, 'YYYY-MM-DD');
-    this.cliente.status = 'Aprovado';
-
     if (this.id) {
-      this.service.atualizar(this.cliente)
+      this.service.atualizar(this.people)
         .subscribe(response => {
           this.success = true;
           this.errors = null;
@@ -49,14 +42,14 @@ export class InstallmentApprovalModalComponent implements OnInit {
             this.installmentEditorModalService.confirm();
           }, 1300);
         }, errorResponse => {
-          this.errors = ['Erro ao atualizar o cliente'];
+          this.errors = ['Erro ao atualizar o people'];
         });
     } else {
-      this.service.salvar(this.cliente)
+      this.service.salvar(this.people)
         .subscribe(response => {
           this.success = true;
           this.errors = null;
-          this.cliente = response;
+          this.people = response;
           setTimeout(() => {
             this.installmentEditorModalService.confirm();
           }, 1300);

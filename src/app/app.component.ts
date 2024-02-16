@@ -7,7 +7,7 @@ import jQuery from 'jquery'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit{
-  title = 'clientes-app';
+  title = 'fork-app';
 
   ngAfterViewInit(){
     (function($) {

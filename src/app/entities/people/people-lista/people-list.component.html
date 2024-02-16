@@ -16,33 +16,24 @@
         <thead>
         <tr>
           <th>ID</th>
-          <th>Tipo</th>
-          <th>Valor</th>
-          <th>Descrição</th>
-          <th>Data</th>
-          <th>Status</th>
+          <th>Nome</th>
           <th>
             <button class="btn btn-primary" (click)="novoCadastro()">
-              <i class="fa fa-plus"></i>&nbsp;Lançamento de contas
+              <i class="fa fa-plus"></i>&nbsp;Novo
             </button>
           </th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let cliente of clientes">
-          <td>{{cliente.id}}</td>
-          <td>{{cliente.tipo}}</td>
-          <td>{{cliente.valor}}</td>
-          <td>{{cliente.descricao}}</td>
-          <td>{{cliente.data | date:'yyyy-MM-dd'}}</td>
-          <td>{{ cliente.status }}</td>
-
+        <tr *ngFor="let people of peoples">
+          <td>{{people.id}}</td>
+          <td>{{people.name}}</td>
           <td>
-            <button class="btn btn-success" (click)="edit(cliente)">
-              <i class="fa fa-check"></i>&nbsp;&nbsp;Aprovar
+            <button class="btn btn-warning" (click)="edit(people)">
+              <i class="fa-solid fa-pen"></i>&nbsp;Editar
             </button>
             &nbsp;
-            <button class="btn btn-danger" (click)="preparaDelecao(cliente)"
+            <button class="btn btn-danger" (click)="preparaDelecao(people)"
                     data-toggle="modal" data-target="#modalDelecao">
               <i class="fa fa-trash"></i>
             </button>
@@ -50,7 +41,6 @@
         </tr>
         </tbody>
       </table>
-
     </div>
   </div>
 
@@ -60,12 +50,12 @@
         <div class="modal-header">
           <h4>Confirmação</h4>
         </div>
-        <div class="modal-body" *ngIf="clienteSelecionado">
-          <!--          Confirma a deleção do Cliente {{ clienteSelecionado.nome }}?-->
+        <div class="modal-body" *ngIf="peopleSelecionado">
+
         </div>
 
         <div class="modal-footer">
-          <button class="btn btn-success" (click)="deletarCliente()" data-dismiss="modal">Confirma</button>
+          <button class="btn btn-success" (click)="deletarPeople()" data-dismiss="modal">Confirma</button>
           <button class="btn btn-danger" data-dismiss="modal">Cancela</button>
         </div>
       </div>
